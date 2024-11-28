@@ -11,17 +11,17 @@ function createWatcher(options, callback) {
     '.cursorrules',
     'contents.xml',
     'pnpm-lock.yaml',
-    ...(options.exclude || [])
+    ...(options.exclude || []),
   ];
 
   const watcher = chokidar.watch('.', {
     ignored: ignoredPatterns,
     persistent: true,
     ignoreInitial: true,
-    followSymlinks: false
+    followSymlinks: false,
   });
 
-  watcher.on('change', async (filePath) => {
+  watcher.on('change', async filePath => {
     if (shouldIncludeFile(filePath, options.include, options.exclude)) {
       await callback(filePath);
     }

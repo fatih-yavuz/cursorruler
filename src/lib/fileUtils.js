@@ -1,6 +1,5 @@
 const fs = require('fs').promises;
 const path = require('path');
-const yaml = require('js-yaml');
 const { execSync } = require('child_process');
 
 /**
@@ -64,7 +63,6 @@ async function generateProjectTree(include = [], exclude = []) {
   }
 }
 
-
 function shouldIncludeFile(filePath, includes = [], excludes = []) {
   const basename = path.basename(filePath);
   const relativePath = path.relative(process.cwd(), filePath);
@@ -84,30 +82,26 @@ function shouldIncludeFile(filePath, includes = [], excludes = []) {
     'contents.xml',
     'pnpm-lock.yaml',
     '.DS_Store',
-    'Thumbs.db'
+    'Thumbs.db',
   ]);
   if (specialFiles.has(basename)) {
     return false;
   }
 
   // Check for temporary and backup files
-  const tempPatterns = [
-    '/tmp/',
-    '-lock',
-    'prompt',
-    '\\.swp$',
-    '\\.tmp$',
-    '~$'
-  ];
+  const tempPatterns = ['/tmp/', '-lock', 'prompt', '\\.swp$', '\\.tmp$', '~$'];
   if (tempPatterns.some(pattern => new RegExp(pattern).test(basename))) {
     return false;
   }
 
   // Check exclude patterns first
-  if (excludes.length > 0 && excludes.some(pattern => {
-    const regex = createPattern(pattern);
-    return regex && regex.test(relativePath);
-  })) {
+  if (
+    excludes.length > 0 &&
+    excludes.some(pattern => {
+      const regex = createPattern(pattern);
+      return regex && regex.test(relativePath);
+    })
+  ) {
     return false;
   }
 
