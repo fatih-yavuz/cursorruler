@@ -1,0 +1,15 @@
+.cursorrules-template
+contents.xml
+tree.sh
+data/
+db/
+*.json
+*.log
+*.yaml
+*.mjs
+*.xml
+*.txt
+*.csv
+*.tsv
+*.jsonl
+.prettierrc

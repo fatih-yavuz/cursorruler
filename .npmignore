@@ -1,0 +1,13 @@
+.vscode/
+__tests__/
+.eslintrc.json
+.prettierrc
+.gitignore
+.cursorrules
+.cursorrules-template
+.cursorignore
+jest.config.js
+tsconfig.json
+*.test.js
+*.spec.js
+.husky/
