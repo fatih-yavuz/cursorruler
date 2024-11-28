@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CursorRuler Documentation</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        pre {
+            background-color: #f6f8fa;
+            padding: 16px;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            font-size: 85%;
+        }
+        h1, h2, h3 {
+            color: #24292e;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>CursorRuler</h1>
+    <p>Generate and maintain .cursorrules files for LLM-assisted development</p>
+
+    <h2>Overview</h2>
+    <p>CursorRuler is a CLI tool that helps you generate and maintain .cursorrules files for your projects. These files contain your project structure and code in a format that's optimized for Large Language Models (LLMs), enhancing AI-assisted development.</p>
+
+    <h2>Requirements</h2>
+    <ul>
+        <li>Node.js ≥ 18.0.0</li>
+        <li>pnpm ≥ 9.0.0</li>
+    </ul>
+
+    <h2>Installation</h2>
+    <pre><code>pnpm add -D cursorruler</code></pre>
+
+    <h2>Quick Start</h2>
+    <pre><code>npx cursorruler -i "*.js" -i "*.json" -e "node_modules/**" -w</code></pre>
+
+    <h2>Command Line Options</h2>
+    <ul>
+        <li><code>-i, --include &lt;patterns...&gt;</code>: File patterns to include</li>
+        <li><code>-e, --exclude &lt;patterns...&gt;</code>: File patterns to exclude</li>
+        <li><code>-w, --watch</code>: Watch for file changes</li>
+        <li><code>-r, --refresh</code>: Auto-refresh every 5 seconds</li>
+        <li><code>--no-gitignore</code>: Ignore .gitignore patterns</li>
+    </ul>
+
+    <h2>Configuration</h2>
+    <p>Create a <code>.cursorruler.json</code> file in your project root:</p>
+    <pre><code>{
+    "include": ["*.js", "*.json"],
+    "exclude": ["node_modules/**"],
+    "watch": {
+        "ignored": ["node_modules", ".git"],
+        "persistent": true
+    }
+}</code></pre>
+
+    <h2>Features</h2>
+    <ul>
+        <li>Automatic file watching and updates</li>
+        <li>Smart file minification with fallback strategies</li>
+        <li>Gitignore integration</li>
+        <li>Support for multiple file types:
+            <ul>
+                <li>JavaScript (.js)</li>
+                <li>TypeScript (.ts, .tsx)</li>
+                <li>JSON (.json)</li>
+                <li>YAML (.yml, .yaml)</li>
+                <li>TOML (.toml)</li>
+                <li>HTML (.html)</li>
+                <li>CSS (.css)</li>
+                <li>XML (.xml)</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Examples</h2>
+    <h3>Basic Usage</h3>
+    <pre><code># Include all JavaScript files
+npx cursorruler -i "*.js"
+
+# Include JavaScript and exclude test files
+npx cursorruler -i "*.js" -e "**/*.test.js"
+
+# Watch mode with multiple patterns
+npx cursorruler -i "*.js" -i "*.json" -e "*.test.js" -w</code></pre>
+
+    <h2>Best Practices</h2>
+    <ul>
+        <li>Always exclude sensitive files and directories</li>
+        <li>Use specific include patterns to minimize unnecessary file processing</li>
+        <li>Consider using watch mode during development</li>
+        <li>Regularly update your .cursorrules file to maintain sync with your codebase</li>
+    </ul>
+
+    <div class="warning">
+        <strong>Note:</strong> Make sure to add .cursorrules to your .gitignore if you don't want to commit the generated file.
+    </div>
+
+    <h2>Contributing</h2>
+    <p>Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.</p>
+
+    <h2>License</h2>
+    <p>ISC</p>
+</body>
+</html>
